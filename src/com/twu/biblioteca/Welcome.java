@@ -11,5 +11,6 @@ public class Welcome{
     }
     public void greetCustomer(){
         System.out.println(greeting);
+
     }
 }
