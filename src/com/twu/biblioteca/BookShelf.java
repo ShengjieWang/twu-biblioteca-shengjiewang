@@ -1,22 +1,29 @@
 package com.twu.biblioteca;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 
 public class BookShelf {
-    private String[] books;
+    private ArrayList<Book> books = new ArrayList<Book>();
+
     public BookShelf(){
-        String[] books = {"book 1","book 2","book 3","book 4","book 5","book 6"};
-        this.books = books;
+        for (int i=0; i<6; i++)
+        {
+            int initial_yy = 2000;
+            Book currentBook  = new Book("Book"+(i+1),"Author"+(i+1), i +initial_yy );
+            this.books.add(currentBook);
+        }
+
     }
-    public BookShelf(String[] books){
+    public BookShelf(ArrayList<Book> books){
         this.books = books;
     }
 
     public void printBooksName() {
         System.out.println("Currently available books are: ");
-        for (String book : books)
+        System.out.printf("%10s     %10s    %4s\n","Book Name","Author","Year");
+        for (Book book : books)
         {
-            System.out.println(book);
+            System.out.printf("%10s     %10s    %4d\n", book.name,book.author,book.publishedYear);
         }
     }
 
