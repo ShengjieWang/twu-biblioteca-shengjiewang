@@ -9,7 +9,7 @@ public class BookShelf {
         for (int i=0; i<6; i++)
         {
             int initial_yy = 2000;
-            Book currentBook  = new Book("Book"+(i+1),"Author"+(i+1), i +initial_yy );
+            Book currentBook  = new Book("Book"+(i+1),"Author"+(i+1), i +initial_yy,i );
             this.books.add(currentBook);
         }
 
