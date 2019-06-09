@@ -9,7 +9,7 @@ public class Menu {
     }
     private void display_main_menu(){
         System.out.println("Biblioteca Book Menu:");
-        System.out.print("1. Book List\n");
+        System.out.print("1. Display Book List\n");
         System.out.print("2. Checkout a Book\n");
         System.out.print("3. Return a Book\n");
         System.out.print("4. Exit\n");
