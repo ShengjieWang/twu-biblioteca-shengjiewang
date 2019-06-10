@@ -31,24 +31,24 @@ public class MovieShelf {
                     movie.getDirector(),movie.getRating());
         }
     }
-    public boolean checkoutMovie(int index) {
+    public Movie checkoutMovie(int index) {
         for (Movie movie : this.movies) {
             //Check the existence of the movie
             if (movie.getId() == index) {
                 this.rentoutMovies.add(movie);
                 this.movies.remove(movie);
-                return true;
+                return movie;
             }
-        }return false;
+        }return null;
     }
-    public boolean returnMovie(int index) {
+    public Movie returnMovie(int index) {
         for (Movie movie : this.rentoutMovies) {
             //Check the existence of the movie
             if (movie.getId() == index) {
                 this.movies.add(movie);
                 this.rentoutMovies.remove(movie);
-                return true;
+                return movie;
             }
-        }return false;
+        }return null;
     }
 }

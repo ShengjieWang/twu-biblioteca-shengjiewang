@@ -8,8 +8,8 @@ public class Customer {
     private int age;
     private String userName;
     private String password;
-    private ArrayList<Book> borrowedBooks;
-    private ArrayList<Movie> borrowedMovies;
+    private ArrayList<Book> borrowedBooks = new ArrayList<Book>();
+    private ArrayList<Movie> borrowedMovies = new ArrayList<Movie>();
     private boolean isLoggedIn = false;
 
     public Customer(String userName, String password) {
@@ -46,6 +46,16 @@ public class Customer {
         System.out.printf("%12s:    %s\n","Last Name",lastName);
         System.out.printf("%12s:    %s\n","User Name",userName);
         System.out.printf("%12s:    %s\n","Age",age);
+        System.out.print("Borrowed Books are:\n");
+        for (Book book : borrowedBooks){
+            System.out.printf("%10d     %10s     %10s    %4d\n",book.getId(), book.getName(),book.getAuthor(),
+                    book.getPublishedYear());
+        }
+        System.out.print("Borrowed Movies are:\n");
+        for (Movie movie :borrowedMovies){
+            System.out.printf("%10d     %10s     %4d    %10s    %10d\n",movie.getId(), movie.getName(),movie.getPublishedYear(),
+                    movie.getDirector(),movie.getRating());
+        }
     }
     public boolean checkPassword(String password){
         if(this.password.equals(password)){
@@ -53,7 +63,22 @@ public class Customer {
         }
         return false;
     }
-
+    //borrow book
+    public void addBook(Book book) {
+        this.borrowedBooks.add(book);
+    }
+    //return book
+    public void removeBook(Book book){
+        this.borrowedBooks.remove(book);
+    }
+    //borrow movie
+    public void addMovie(Movie movie){
+        this.borrowedMovies.add(movie);
+    }
+    //return movie
+    public void removeMovie(Movie movie){
+        this.borrowedMovies.remove(movie);
+    }
     //Getters
     public String getUserName(){
         return userName;

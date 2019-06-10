@@ -31,18 +31,26 @@ public class BookMenu extends MenuInterface {
     public void option() {
         Scanner bookInput = new Scanner(System.in);
         String opt = bookInput.nextLine();
+        Customer currentCustomer = customerSystem.loggedCustomer();
         switch (opt){
             case showBooklist:
                 bookShelf.printBooksName();
                 display();
                 break;
             case doCheckout:
+                //before borrowed make sure there is anyone logged in
+                if (!checkCustomer(currentCustomer)){
+                    customerSystem.login();
+                    return;
+                }
                 Scanner borrow_scan = new Scanner(System.in);
                 //borrow a book
                 System.out.print("Please entry the book id that you want to checkout:\n");
                 if(borrow_scan.hasNextInt()) {
                     int bookid = borrow_scan.nextInt();
-                    if (bookShelf.checkoutBook(bookid)) {
+                    Book borrowBook = bookShelf.checkoutBook(bookid);
+                    if ( borrowBook != null) {
+                        currentCustomer.addBook(borrowBook);
                         System.out.print("You have successfully checked out the book.\n");
                     } else {
                         System.out.print("Ohhhhh NO!! The book you were trying to borrow currently is not available.\n");
@@ -52,11 +60,18 @@ public class BookMenu extends MenuInterface {
                 break;
             case doReturn:
                 Scanner return_scan = new Scanner(System.in);
+                //check currentCustomer first
+                if (!checkCustomer(currentCustomer)){
+                    customerSystem.login();
+                    return;
+                }
                 //return a book
                 System.out.print("Please entry the book id that you want to return:\n");
                 if(return_scan.hasNextInt()) {
                     int bookid = return_scan.nextInt();
-                    if (bookShelf.returnBook(bookid)) {
+                    Book retunredBook = bookShelf.returnBook(bookid);
+                    if (retunredBook != null) {
+                        currentCustomer.removeBook(retunredBook);
                         System.out.print("You have successfully return the book.\n");
                     } else {
                         System.out.print("Return Failed: Seems like you borrowed book from somewhere else.\n");
@@ -76,5 +91,10 @@ public class BookMenu extends MenuInterface {
         }
     }
 
-
+    public boolean checkCustomer(Customer customer){
+        if (customer == null){
+            System.out.print("Please login before you borrow.\n");
+            return false;
+        }return true;
+    }
 }

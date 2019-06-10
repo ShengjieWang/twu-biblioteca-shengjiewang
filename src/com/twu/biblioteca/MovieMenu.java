@@ -32,19 +32,26 @@ public class MovieMenu extends MenuInterface {
     public void option() {
         Scanner movieInput = new Scanner(System.in);
         String opt = movieInput.nextLine();
+        Customer currentCustomer = customerSystem.loggedCustomer();
         switch (opt){
             case showMovieList:
                 movieShelf.printMoviesName();
                 display();
                 break;
             case doCheckout:
-
+                //before borrowed make sure there is anyone logged in
+                if (!checkCustomer(currentCustomer)){
+                    customerSystem.login();
+                    return;
+                }
                 Scanner borrow_scan = new Scanner(System.in);
                 //borrow a movie
                 System.out.print("Please entry the movie id that you want to checkout:\n");
                 if(borrow_scan.hasNextInt()) {
                     int movieId = borrow_scan.nextInt();
-                    if (movieShelf.checkoutMovie(movieId)) {
+                    Movie borrowMovie = movieShelf.checkoutMovie(movieId);
+                    if (borrowMovie != null) {
+                        currentCustomer.addMovie(borrowMovie);
                         System.out.print("You have successfully checked out the movie.\n");
                     } else {
                         System.out.print("Ohhhhh NO!! The movie you were trying to borrow currently is not available.\n");
@@ -53,12 +60,19 @@ public class MovieMenu extends MenuInterface {
                 display();
                 break;
             case doReturn:
+                //before borrowed make sure there is anyone logged in
+                if (!checkCustomer(currentCustomer)){
+                    customerSystem.login();
+                    return;
+                }
                 Scanner return_scan = new Scanner(System.in);
                 //return a movie
                 System.out.print("Please entry the movie id that you want to return:\n");
                 if(return_scan.hasNextInt()) {
                     int movieId = return_scan.nextInt();
-                    if (movieShelf.returnMovie(movieId)) {
+                    Movie returnMovie = movieShelf.returnMovie(movieId);
+                    if (returnMovie != null) {
+                        currentCustomer.removeMovie(returnMovie);
                         System.out.print("You have successfully return the movie.\n");
                     } else {
                         System.out.print("Return Failed: Seems like you borrowed movie from somewhere else.\n");
@@ -76,5 +90,11 @@ public class MovieMenu extends MenuInterface {
                 display();
                 break;
         }
+    }
+    public boolean checkCustomer(Customer customer){
+        if (customer == null){
+            System.out.print("Please login before you borrow.\n");
+            return false;
+        }return true;
     }
 }

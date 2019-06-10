@@ -27,25 +27,25 @@ public class BookShelf {
                     book.getPublishedYear());
         }
     }
-    public boolean checkoutBook(int index) {
+    public Book checkoutBook(int index) {
         for (Book book : this.books) {
             //Check the existence of the book
             if (book.getId() == index) {
                 this.rentoutBooks.add(book);
                 this.books.remove(book);
-                return true;
+                return book;
             }
-        }return false;
+        }return null;
     }
-    public boolean returnBook(int index) {
+    public Book returnBook(int index) {
         for (Book book : this.rentoutBooks) {
             //Check the existence of the book
             if (book.getId() == index) {
                 this.books.add(book);
                 this.rentoutBooks.remove(book);
-                return true;
+                return book;
             }
-        }return false;
+        }return null;
     }
 
 
