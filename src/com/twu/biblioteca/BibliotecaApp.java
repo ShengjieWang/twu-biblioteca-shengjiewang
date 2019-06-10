@@ -3,12 +3,16 @@ package com.twu.biblioteca;
 public class BibliotecaApp {
 
     public static void main(String[] args) {
-        Menu menu = new Menu();
         Welcome myWelcome = new Welcome();
         BookShelf myBookshelf = new BookShelf();
-        menu.options(myBookshelf);
-
+        BookMenu bookMenu = new BookMenu(myBookshelf);
+        MovieMenu movieMenu = new MovieMenu();
+        MainMenu mainMenu = new MainMenu(bookMenu,movieMenu);
+        Menu menu = new Menu();
         myWelcome.greetCustomer();
+        while (true){
+            mainMenu.display();
+        }
 
     }
 
