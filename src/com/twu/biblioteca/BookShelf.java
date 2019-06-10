@@ -23,13 +23,14 @@ public class BookShelf {
         System.out.printf("%10s     %10s     %10s    %4s\n","Book Id","Book Name","Author","Year");
         for (Book book : books)
         {
-            System.out.printf("%10d     %10s     %10s    %4d\n",book.id, book.name,book.author,book.publishedYear);
+            System.out.printf("%10d     %10s     %10s    %4d\n",book.getId(), book.getName(),book.getAuthor(),
+                    book.getPublishedYear());
         }
     }
     public boolean checkoutBook(int index) {
         for (Book book : this.books) {
             //Check the existence of the book
-            if (book.id == index) {
+            if (book.getId() == index) {
                 this.rentoutBooks.add(book);
                 this.books.remove(book);
                 return true;
@@ -39,7 +40,7 @@ public class BookShelf {
     public boolean returnBook(int index) {
         for (Book book : this.rentoutBooks) {
             //Check the existence of the book
-            if (book.id == index) {
+            if (book.getId() == index) {
                 this.books.add(book);
                 this.rentoutBooks.remove(book);
                 return true;

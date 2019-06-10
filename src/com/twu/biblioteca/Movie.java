@@ -1,13 +1,13 @@
 package com.twu.biblioteca;
 
-public class Book {
-
+public class Movie {
     private int id;
     private String name;
     private String author;
     private int publishedYear;
 
-    public Book(String name, String author, int publishedYear,int id) {
+
+    public Movie(String name, String author, int publishedYear,int id) {
         this.id = id;
         this.name = name;
         this.author = author;
@@ -29,5 +29,4 @@ public class Book {
     public int getPublishedYear() {
         return publishedYear;
     }
-
 }
