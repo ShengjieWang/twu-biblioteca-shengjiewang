@@ -1,0 +1,94 @@
+Q1
+Answer: Anand Beck
+SQL code:
+
+SELECT member.name 
+FROM member
+WHERE member.id IN(
+	SELECT checkout_item.member_id
+	FROM checkout_item
+	WHERE checkout_item.book_id IN(
+		SELECT book.id 
+		FROM book
+		Where book.title = "The Hobbit"
+	)
+);
+	
+Q2
+Answer: 37
+
+SQL code:
+
+SELECT count(*)
+FROM member
+WHERE member.id NOT IN(
+	SELECT checkout_item.member_id
+	FROM checkout_item
+);
+
+
+Q3
+Answer:	
+
+1984
+Catcher in the Rye
+Crouching Tiger
+Domain Driven Design
+Fellowship of the Ring
+Lawrence of Arabia
+Office Space
+Thin Red Line
+To Kill a Mockingbird
+Tom Sawyer
+
+SQL code:
+SELECT book.title  
+FROM book
+WHERE book.id not in (
+  SELECT checkout_item.book_id
+  FROM checkout_item
+  WHERE checkout_item.book_id not NULL
+)
+UNION
+SELECT movie.title 
+FROM movie
+WHERE movie.id  not in (
+  SELECT checkout_item.movie_id 
+  FROM checkout_item
+  WHERE checkout_item.movie_id  not NULL
+  );
+
+
+Q4
+Answer:
+
+SQL code:
+//insert book
+INSERT INTO book (title) VALUES("The Pragmatic Programmer");
+//insert member
+INSERT INTO member (name) VALUES ("Shengjie Wang");
+//insert checkout item
+INSERT Into checkout_item (member_id , book_id )
+SELECT DISTINCT member.id, book.id 
+From member
+LEFT JOIN book
+WHERE member.name = "Shengjie Wang" AND book.title = "The Pragmatic Programmer";
+
+Q5
+Answer:
+Anand Beck
+Frank Smith
+
+SQL code:
+
+SELECT member.name
+FROM member
+WHERE member.id IN(
+  SELECT member_id
+	FROM (
+    	SELECT COUNT(*) AS "borrowCount" ,checkout_item.member_id  
+		FROM checkout_item
+		GROUP BY member_id
+    )
+	WHERE borrowCount > 1
+);
