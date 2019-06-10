@@ -8,7 +8,6 @@ public class BibliotecaApp {
         BookMenu bookMenu = new BookMenu(myBookshelf);
         MovieMenu movieMenu = new MovieMenu();
         MainMenu mainMenu = new MainMenu(bookMenu,movieMenu);
-        Menu menu = new Menu();
         myWelcome.greetCustomer();
         while (true){
             mainMenu.display();
