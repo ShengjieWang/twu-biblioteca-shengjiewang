@@ -31,7 +31,7 @@ public class MovieMenu extends MenuInterface {
         String opt = movieInput.nextLine();
         switch (opt){
             case showMovieList:
-                movieShelf.printBooksName();
+                movieShelf.printMoviesName();
                 display();
                 break;
             case doCheckout:
@@ -40,7 +40,7 @@ public class MovieMenu extends MenuInterface {
                 System.out.print("Please entry the movie id that you want to checkout:\n");
                 if(borrow_scan.hasNextInt()) {
                     int movieId = borrow_scan.nextInt();
-                    if (movieShelf.checkoutBook(movieId)) {
+                    if (movieShelf.checkoutMovie(movieId)) {
                         System.out.print("You have successfully checked out the movie.\n");
                     } else {
                         System.out.print("Ohhhhh NO!! The movie you were trying to borrow currently is not available.\n");
@@ -50,11 +50,11 @@ public class MovieMenu extends MenuInterface {
                 break;
             case doReturn:
                 Scanner return_scan = new Scanner(System.in);
-                //return a book
+                //return a movie
                 System.out.print("Please entry the movie id that you want to return:\n");
                 if(return_scan.hasNextInt()) {
                     int movieId = return_scan.nextInt();
-                    if (movieShelf.returnBook(movieId)) {
+                    if (movieShelf.returnMovie(movieId)) {
                         System.out.print("You have successfully return the movie.\n");
                     } else {
                         System.out.print("Return Failed: Seems like you borrowed movie from somewhere else.\n");
