@@ -10,10 +10,12 @@ public class MainMenu extends MenuInterface{
 
     private BookMenu bookMenu;
     private MovieMenu movieMenu;
+    private CustomerSystem customerSystem;
 
-    public MainMenu(BookMenu bookMenu, MovieMenu movieMenu) {
+    public MainMenu(BookMenu bookMenu, MovieMenu movieMenu,CustomerSystem customerSystem) {
         this.bookMenu = bookMenu;
         this.movieMenu = movieMenu;
+        this.customerSystem = customerSystem;
     }
 
     @Override
@@ -34,20 +36,28 @@ public class MainMenu extends MenuInterface{
             case openBookMenu:
                 bookMenu.display();
                 display();
-                //do something
+                break;
             case openMovieMenu:
                 movieMenu.display();
                 display();
-                //do something
+                break;
             case openMyInfo:
+                Customer tempCus = customerSystem.loggedCustomer();
+                if (tempCus != null){
+                    tempCus.displayMyInfo();
+                }else {
+                    System.out.print("Please Loggin first\n");
+                    customerSystem.login();
+                }
                 display();
-                // do something
+                break;
             case exit:
                 //Exit
                 exitMenu();
             default:
                 System.out.println(opt + " is not a valid option. Please try again:)");
                 display();
+                break;
         }
     }
 

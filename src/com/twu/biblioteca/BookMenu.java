@@ -9,8 +9,11 @@ public class BookMenu extends MenuInterface {
     private final String doReturn = "3";
     private final String backToMain = "4";
     private BookShelf bookShelf;
-    public BookMenu(BookShelf bookShelf) {
+    private CustomerSystem customerSystem;
+    public BookMenu(BookShelf bookShelf, CustomerSystem customerSystem) {
+
         this.bookShelf  = bookShelf;
+        this.customerSystem = customerSystem;
     }
 
     @Override

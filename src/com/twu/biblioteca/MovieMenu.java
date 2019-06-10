@@ -9,8 +9,11 @@ public class MovieMenu extends MenuInterface {
     private final String doReturn = "3";
     private final String backToMain = "4";
     private MovieShelf movieShelf;
-    public MovieMenu(MovieShelf movieShelf) {
+    private CustomerSystem customerSystem;
+    public MovieMenu(MovieShelf movieShelf, CustomerSystem customerSystem) {
+
         this.movieShelf  = movieShelf;
+        this.customerSystem = customerSystem;
     }
 
 
@@ -35,6 +38,7 @@ public class MovieMenu extends MenuInterface {
                 display();
                 break;
             case doCheckout:
+
                 Scanner borrow_scan = new Scanner(System.in);
                 //borrow a movie
                 System.out.print("Please entry the movie id that you want to checkout:\n");

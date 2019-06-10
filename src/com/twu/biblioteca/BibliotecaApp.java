@@ -6,9 +6,10 @@ public class BibliotecaApp {
         Welcome myWelcome = new Welcome();
         BookShelf myBookshelf = new BookShelf();
         MovieShelf myMovieshelf = new MovieShelf();
-        BookMenu bookMenu = new BookMenu(myBookshelf);
-        MovieMenu movieMenu = new MovieMenu(myMovieshelf);
-        MainMenu mainMenu = new MainMenu(bookMenu,movieMenu);
+        CustomerSystem customerSystem = new CustomerSystem();
+        BookMenu bookMenu = new BookMenu(myBookshelf,customerSystem);
+        MovieMenu movieMenu = new MovieMenu(myMovieshelf,customerSystem);
+        MainMenu mainMenu = new MainMenu(bookMenu,movieMenu,customerSystem);
         myWelcome.greetCustomer();
         while (true){
             mainMenu.display();
