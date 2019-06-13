@@ -10,7 +10,6 @@ public class Welcome{
         this.greeting = greeting;
     }
     public void greetCustomer(){
-        System.out.println(greeting);
 
     }
 }
