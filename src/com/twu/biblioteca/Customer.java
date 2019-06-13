@@ -83,6 +83,7 @@ public class Customer {
     public String getUserName(){
         return userName;
     }
+
     public String getFirstName() {
         return firstName;
     }
@@ -98,24 +99,8 @@ public class Customer {
     public boolean isLoggedIn() {
         return isLoggedIn;
     }
-    //Setter
-    public void setLoggedIn(boolean loggedIn) {
-        isLoggedIn = loggedIn;
-    }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public void setLoggedIn(boolean isLoggedIn) {
+        this.isLoggedIn = isLoggedIn;
     }
 }

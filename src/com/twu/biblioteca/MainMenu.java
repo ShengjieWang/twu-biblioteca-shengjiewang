@@ -2,7 +2,7 @@ package com.twu.biblioteca;
 
 import java.util.Scanner;
 
-public class MainMenu extends MenuInterface{
+public class MainMenu extends Menu{
 
     private final String openBookMenu = "1";
     private final String openMovieMenu = "2";
