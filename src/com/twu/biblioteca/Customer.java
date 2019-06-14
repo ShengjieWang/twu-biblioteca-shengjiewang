@@ -63,23 +63,23 @@ public class Customer {
         }
         return false;
     }
-    //borrow book
+
     public void addBook(Book book) {
         this.borrowedBooks.add(book);
     }
-    //return book
+
     public void removeBook(Book book){
         this.borrowedBooks.remove(book);
     }
-    //borrow movie
+
     public void addMovie(Movie movie){
         this.borrowedMovies.add(movie);
     }
-    //return movie
+
     public void removeMovie(Movie movie){
         this.borrowedMovies.remove(movie);
     }
-    //Getters
+
     public String getUserName(){
         return userName;
     }

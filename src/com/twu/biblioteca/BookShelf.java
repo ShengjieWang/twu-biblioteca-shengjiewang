@@ -27,20 +27,22 @@ public class BookShelf {
                     book.getPublishedYear());
         }
     }
-    public Book checkoutBook(int index) {
+
+    public Book checkoutBook(int bookId) {
         for (Book book : this.books) {
             //Check the existence of the book
-            if (book.getId() == index) {
+            if (book.getId() == bookId) {
                 this.rentoutBooks.add(book);
                 this.books.remove(book);
                 return book;
             }
         }return null;
     }
-    public Book returnBook(int index) {
+
+    public Book returnBook(int bookId) {
         for (Book book : this.rentoutBooks) {
             //Check the existence of the book
-            if (book.getId() == index) {
+            if (book.getId() == bookId) {
                 this.books.add(book);
                 this.rentoutBooks.remove(book);
                 return book;
